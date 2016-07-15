@@ -2,14 +2,15 @@ const Game = require('./game.js');
 const Player = window.Player = require('./player.js');
 
 
-function GameView(dimX, dimY, ctx) {
-  this.dimX = dimX;
-  this.dimY = dimY;
+function GameView(ctx) {
+  // this.dimX = dimX;
+  // this.dimY = dimY;
   this.ctx = ctx;
 }
 
-GameView.prototype.start = function(ctx) {
-  this.game = new Game(this.dimX, this.dimY);
+GameView.prototype.start = function(ctx, board) {
+  this.game = new Game(board);
+  this.board = board;
   this.player = this.game.player;
   this.keyHandlers();
 
@@ -26,14 +27,14 @@ GameView.prototype.animate = function () {
 };
 
 GameView.MOVES = {
-  "w": [ 0, -.2],
-  "a": [-.2,  0],
-  "s": [ 0,  .2],
-  "d": [ .2,  0],
-  "up": [ 0, -.2],
-  "left": [-.2,  0],
-  "right": [ .2,  0],
-  "down": [ 0,  .2]
+  "w": [ 0, -0.5],
+  "a": [-0.5,  0],
+  "s": [ 0,  0.5],
+  "d": [ 0.5,  0],
+  "up": [ 0, -0.5],
+  "left": [-0.5,  0],
+  "right": [ 0.5,  0],
+  "down": [ 0,  0.5]
 };
 
 GameView.prototype.keyHandlers = function() {
